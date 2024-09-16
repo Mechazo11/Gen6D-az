@@ -1,16 +1,18 @@
+"""Script to run colmap."""
+
+# Imports
 import logging
 import subprocess
 import os
 from pathlib import Path
-
 import numpy as np
 from skimage.io import imsave
-
 from dataset.database import BaseDatabase, get_database_split
 from utils.colmap_database import COLMAPDatabase
 from utils.read_write_model import CAMERA_MODEL_NAMES
 
 def run_sfm(colmap_path, model_path, database_path, image_dir):
+    """Run structure from motion pipeline."""
     logging.info('Running the triangulation...')
     model_path.mkdir(exist_ok=True, parents=True)
 
@@ -87,6 +89,7 @@ def create_db_from_database(database, ref_ids, database_path: Path):
     db.close()
 
 def build_colmap_model_no_pose(database: BaseDatabase, colmap_path='colmap'):
+    """Build a COLMAP instance that outputs no pose, only pointcloud."""
     colmap_root = Path('data') / database.database_name / 'colmap'
     colmap_root.mkdir(exist_ok=True, parents=True)
     image_path = colmap_root / 'images'
@@ -96,6 +99,7 @@ def build_colmap_model_no_pose(database: BaseDatabase, colmap_path='colmap'):
 
     dump_images(database, ref_ids, image_path)
     create_db_from_database(database, ref_ids, database_path)
+    # 09/16/24 throws Signals.SIGABRT 6 error
     extract_and_match_sift(colmap_path, database_path, image_path)
 
     sparse_model_path = colmap_root / f'sparse'

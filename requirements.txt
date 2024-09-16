@@ -1,6 +1,6 @@
-pytorch>=1.7.1
-torchvision
-opencv-python
+#pytorch>=1.7.1
+#torchvision
+#opencv-python
 transforms3d
 numpy
 plyfile
