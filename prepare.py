@@ -1,3 +1,4 @@
+# Includes
 import argparse
 from pathlib import Path
 
@@ -14,6 +15,7 @@ from utils.base_utils import load_cfg, save_pickle
 
 
 def video2image(input_video, output_dir, interval=30, image_size = 640, transpose=False):
+    """Extract frames from a video."""
     print(f'split video {input_video} into images ...')
     Path(output_dir).mkdir(parents=True, exist_ok=True)
     vidcap = cv2.VideoCapture(input_video)

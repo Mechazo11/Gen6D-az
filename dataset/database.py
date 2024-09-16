@@ -1,3 +1,8 @@
+"""
+TODO
+"""
+
+# Imports
 import abc
 import glob
 from pathlib import Path
@@ -19,6 +24,7 @@ SUN_IMAGE_ROOT_128 = 'data/SUN2012pascalformat/JPEGImages_128'
 SUN_IMAGE_ROOT_256 = 'data/SUN2012pascalformat/JPEGImages_256'
 SUN_IMAGE_ROOT_512 = 'data/SUN2012pascalformat/JPEGImages_512'
 SUN_IMAGE_ROOT_32 = 'data/SUN2012pascalformat/JPEGImages_64'
+
 def get_SUN397_image_fn_list():
     if Path('data/SUN397_list.pkl').exists():
         return read_pickle('data/SUN397_list.pkl')
