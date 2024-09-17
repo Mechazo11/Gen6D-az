@@ -61,6 +61,9 @@ def extract_and_match_sift(colmap_path, database_path, image_dir):
         '--database_path', str(database_path),
         '--image_path', str(image_dir),
     ]
+
+    print(f"image_dir: {str(image_dir)}")
+
     logging.info(' '.join(cmd))
     subprocess.run(cmd, check=True)
     cmd = [
