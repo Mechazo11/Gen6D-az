@@ -102,7 +102,6 @@ def build_colmap_model_no_pose(database: BaseDatabase, colmap_path='colmap'):
 
     dump_images(database, ref_ids, image_path)
     create_db_from_database(database, ref_ids, database_path)
-    # 09/16/24 throws Signals.SIGABRT 6 error
     extract_and_match_sift(colmap_path, database_path, image_path)
 
     sparse_model_path = colmap_root / f'sparse'
