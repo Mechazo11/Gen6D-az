@@ -19,6 +19,10 @@ from utils.base_utils import read_pickle, save_pickle, pose_compose, load_point_
     mask_depth_to_pts, transform_points_pose
 from utils.read_write_model import read_model
 
+# Add alias to solve AttributeError: module 'numpy' has no attribute 'bool'.
+# https://stackoverflow.com/questions/74893742/how-to-solve-attributeerror-module-numpy-has-no-attribute-bool
+np.bool = np.bool_
+
 SUN_IMAGE_ROOT = 'data/SUN2012pascalformat/JPEGImages'
 SUN_IMAGE_ROOT_128 = 'data/SUN2012pascalformat/JPEGImages_128'
 SUN_IMAGE_ROOT_256 = 'data/SUN2012pascalformat/JPEGImages_256'
@@ -58,6 +62,7 @@ class BaseDatabase(abc.ABC):
         img = self.get_image(img_id)
         h, w = img.shape[:2]
         return np.ones([h,w],np.bool)
+        #return np.ones([h,w],bool)
 
 LINEMOD_ROOT='data/LINEMOD'
 class LINEMODDatabase(BaseDatabase):
